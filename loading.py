@@ -4,8 +4,6 @@ import pandas as pd
 from time import time
 
 
-
-
 def load_mesh_from_number(str_n):
     """"
         Loads and returns a Trimesh model based on the model number.
@@ -13,7 +11,6 @@ def load_mesh_from_number(str_n):
     """
 
     stem = ""
-
 
     # 3 digits
     if len(str_n) == 3:
@@ -27,6 +24,7 @@ def load_mesh_from_number(str_n):
 
     path = "psb_v1/benchmark/db/{stem}/m{full}/m{full}.off".format(stem=stem, full=str_n)
 
+    #print("Loading: "+path)
     return load(path)
 # end def
 
@@ -39,7 +37,6 @@ def load_class_labels(cla_file, debug=False):
     :param debug: print debug text
     :return: numpy array of the model numbers and their associated classes
     """
-
 
     labeled_models = []
 
@@ -77,6 +74,7 @@ def load_class_labels(cla_file, debug=False):
     return labeled_models
 # end def
 
+
 def load_labeled_models(cla_file):
     """
     Loads the Triemsh models and their labels
@@ -103,15 +101,17 @@ def load_labeled_models(cla_file):
     return class_labels, trimesh_models
 # end def
 
+
 if __name__ == "__main__":
+
+    class_file = "reduced_coarse1Train.cla"
 
     # load_class_labels("psb_v1/benchmark/classification/v1/base/test.cla")
     # stuff = load_class_labels("psb_v1/benchmark/classification/v1/base/train.cla")
 
-
     #print(stuff[:,0])
     # df = pd.DataFrame(stuff, columns=["model", "class", "parent_class"])
 
-    labels, models = load_labeled_models("psb_v1/benchmark/classification/v1/base/train.cla")
+    labels, models = load_labeled_models(class_file)
 
 
